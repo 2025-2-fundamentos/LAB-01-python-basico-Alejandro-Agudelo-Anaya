@@ -17,6 +17,7 @@ def pregunta_12():
     """
  
 def pregunta_12():
+    a=0
     letras = {}
 
     with open("./files/input/data.csv") as file:
