@@ -24,3 +24,19 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    recuento = {}
+    with open("./files/input/data.csv", "r") as file:
+
+        for line in file:
+            parts = line.strip().split("\t")
+            letra = parts[4].split(",")
+            claves_vistas = set()
+            for item in letra:
+                clave, _ = item.split(":")
+                if clave not in claves_vistas:
+                    if clave in recuento:
+                        recuento[clave] += 1
+                    else:
+                        recuento[clave] = 1
+                    claves_vistas.add(clave)
+    return recuento

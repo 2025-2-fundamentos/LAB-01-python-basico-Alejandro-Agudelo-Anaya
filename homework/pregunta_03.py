@@ -15,3 +15,16 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+    recuento={}
+    with open("./files/input/data.csv", "r") as file:
+
+        for line in file:
+            parts = line.strip().split("\t")
+            letra=parts[0]
+            valor=int(parts[1])
+            if letra in recuento:
+                recuento[letra] += valor
+            else:
+                recuento[letra] = valor
+    return sorted(recuento.items())
+

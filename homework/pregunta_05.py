@@ -15,3 +15,20 @@ def pregunta_05():
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
 
     """
+    recuento = {}
+    with open("./files/input/data.csv", "r") as file:
+
+        for line in file:
+            parts = line.strip().split("\t")
+            letra = parts[0]
+            valor = int(parts[1])
+            if letra in recuento:
+                maximo, minimo = recuento[letra]
+                if valor > maximo:
+                    maximo = valor
+                if valor < minimo:
+                    minimo = valor
+                recuento[letra] = (maximo, minimo)
+            else:
+                recuento[letra] = (valor, valor)
+    return sorted((k, v[0], v[1]) for k, v in recuento.items())

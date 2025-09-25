@@ -27,3 +27,18 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    numeros = {}
+    with open("./files/input/data.csv", "r") as file:
+
+        for line in file:
+            parts = line.strip().split("\t")
+            letra = parts[0]
+            valor = int(parts[1])
+            if valor in numeros:
+                if letra not in numeros[valor]:
+                    numeros[valor].append(letra)
+                    numeros[valor].sort()
+            else:
+                numeros[valor] = [letra]
+    return sorted((k, v) for k, v in numeros.items())
+

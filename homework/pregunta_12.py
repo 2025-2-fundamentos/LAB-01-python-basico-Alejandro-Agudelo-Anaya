@@ -15,3 +15,17 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+ 
+def pregunta_12():
+    letras = {}
+
+    with open("./files/input/data.csv") as file:
+        for fila in file:
+            columnas = fila.strip().split("\t")  # separo columnas
+            letra = columnas[0]                  # primera columna
+
+            for elemento in columnas[4].split(","):  # quinta columna
+                numero = int(elemento.split(":")[1])
+                letras[letra] = letras.get(letra, 0) + numero
+
+    return dict(sorted(letras.items()))

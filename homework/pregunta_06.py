@@ -26,3 +26,22 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    recuento = {}
+    with open("./files/input/data.csv", "r") as file:
+
+        for line in file:
+            parts = line.strip().split("\t")
+            letra = parts[4].split(",")
+            for item in letra:
+                clave, valor_str = item.split(":")
+                valor = int(valor_str)
+                if clave in recuento:
+                    maximo, minimo = recuento[clave]
+                    if valor > maximo:
+                        maximo = valor
+                    if valor < minimo:
+                        minimo = valor
+                    recuento[clave] = (maximo, minimo)
+                else:
+                    recuento[clave] = (valor, valor)
+    return sorted((k, v[1], v[0]) for k, v in recuento.items())
